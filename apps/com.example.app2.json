@@ -1,0 +1,11 @@
+{
+  "type": "app",
+  "name": "App 2",
+  "desc": "This is an example app. Attempting to install it won't do anything.",
+  "icon": "https://raw.githubusercontent.com/jbmagination/lcdl-repo-template/refs/heads/main/icons/com.example.app2.png",
+  "url": "https://github.com/jbmagination/lcdl-repo-template/releases/download/com.example.app2/",
+  "tweaks": true,
+  "data": true,
+  "version": "0.0.0",
+  "size": "0.00 MB"
+}
