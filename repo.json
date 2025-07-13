@@ -1,0 +1,16 @@
+{
+  "type": "repo",
+  "name": "Template LC-DL Repo",
+  "message": "Template message. Remember to replace this with a description of your repo!",
+  "url": "https://raw.githubusercontent.com/jbmagination/lcdl-repo-template/refs/heads/main/",
+  "version": "1",
+  "apps": {
+    "1": {
+      "name": "App 1",
+      "bundleID": "com.example.app1"
+    },
+    "2": {
+      "name": "App 2",
+      "bundleID": "com.example.app2"
+    }
+}
