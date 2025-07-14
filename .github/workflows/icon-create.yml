@@ -32,7 +32,7 @@ jobs:
       - name: Look for apps with no icon
         run: |
           iconsStr=$(ls -1 ./icons/*.png)
-          appsStr=$(ls -1 ./apps/*.png)
+          appsStr=$(ls -1 ./apps/*.json)
           readarray -td '' icons < <(awk '{ gsub(/\n/,"\0"); print; }' <<<"$iconsStr\n")
           unset 'icons[-1]'
           declare -p icons
