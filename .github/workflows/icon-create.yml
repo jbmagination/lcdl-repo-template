@@ -39,9 +39,8 @@ jobs:
           readarray -td '' apps < <(awk '{ gsub(/\n/,"\0"); print; }' <<<"$appsStr\n")
           unset 'apps[-1]'
           declare -p apps
-          comm -23  \
-          <(printf '%s\n' "${apps[@]}" | sort) \
-          <(printf '%s\n' "${icons[@]}" | sort)
+          printf '%s\n' "${apps[@]}" | sort
+          printf '%s\n' "${icons[@]}" | sort
           
       - name: Attempt to get app.zip file
         run: |
