@@ -16,6 +16,7 @@ jobs:
 
       - name: Resize icons
         run: |
+          mkdir -p ~/.config/ImageMagick
           curl -fsSL https://imagemagick.org/source/policy-websafe.xml -o ~/.config/ImageMagick/policy.xml
           curl -fsSL https://imagemagick.org/archive/binaries/magick -o ./magick
           ./magick mogrify -resize 86x86 ./icons/*.png
