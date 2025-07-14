@@ -45,8 +45,8 @@ jobs:
           
       - name: Attempt to get app.zip file
         run: |
-          for i in 1 2 3 4 5; do curl -fsSL https://github.com/${{github.repository}}/releases/download/com.example.app2/app.zip && break || sleep 15; done
-          rm -rf app.zip
+          for i in 1 2 3 4 5; do curl -fsSL https://github.com/${{github.repository}}/releases/download/com.example.app2/app.zip -o com.example.app2.zip && break || sleep 15; done
+          rm -rf ./com.example.app2.zip
           
       - name: Resize icons
         run: |          
