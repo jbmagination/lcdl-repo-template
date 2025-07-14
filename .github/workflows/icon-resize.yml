@@ -1,0 +1,22 @@
+name: Resize icons
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'icons/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Resize icons
+        run: |
+          curl -fsSL https://imagemagick.org/source/policy-websafe.xml -o ~/.config/ImageMagick/policy.xml
+          curl -fsSL https://imagemagick.org/archive/binaries/magick -o ./magick
+          ./magick mogrify -resize 86x86 ./icons/*.png
+          
