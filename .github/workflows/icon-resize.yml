@@ -19,5 +19,7 @@ jobs:
           mkdir -p ~/.config/ImageMagick
           curl -fsSL https://imagemagick.org/source/policy-websafe.xml -o ~/.config/ImageMagick/policy.xml
           curl -fsSL https://imagemagick.org/archive/binaries/magick -o ./magick
+          chmod +x ./magick
+          ls ./icons
           ./magick mogrify -resize 86x86 ./icons/*.png
           
