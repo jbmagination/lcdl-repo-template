@@ -1,0 +1,43 @@
+name: Add an app
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/**'
+  workflow_dispatch:
+    inputs:
+      appID:
+        description: "Please specify your app's bundle identifier."
+        required: true
+        type: string
+      appName:
+        description: "If you want your app to have a differing name in your repository versus when it's installed, you can specify that name here."
+        required: false
+        type: string
+      appDesc:
+        description: "Please give your app a description."
+        required: true
+        type: string
+      appTweaks:
+        description: "If you want to install tweaks with your app, check this box."
+        required: false
+        type: boolean
+      appData:
+        description: "If you want to install extra data with your app, check this box."
+        required: false
+        type: boolean
+      appVersion:
+        description: "If you want your app version to differ in your repository, you can specify that version here. This"
+        required: false
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
