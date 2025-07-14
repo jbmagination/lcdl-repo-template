@@ -29,6 +29,7 @@ jobs:
       - name: Resize icons
         run: |          
           ./magick mogrify -resize 86x86 ./icons/*.png
+          rm -rf ./magick
 
       - name: Commit changes
         env:
