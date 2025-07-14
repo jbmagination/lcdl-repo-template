@@ -63,7 +63,7 @@ Afterwards, please wait a few minutes for your repository to be automagically up
 Congratulations!
 
 ### Adding an app
-You can add a new app [here](#).
+You can add a new app [here](https://github.com/jbmagination/lcdl-repo-template/actions/workflows/app-create.yml). Select the "Run workflow" button, then fill out the information for your app.
 
 ### Adding this repository to LC-DL
 The ID for this repository is <span id="TemplateAddRepositoryID"><code>d6MEH8</code></span>. You can run the LC-DL shortcut, choose "➕ Enter Code", and enter that ID to see this repository!
