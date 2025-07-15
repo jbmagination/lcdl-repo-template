@@ -4,10 +4,6 @@ permissions:
   contents: write
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'apps/**'
   workflow_dispatch:
     inputs:
       appID:
@@ -31,7 +27,7 @@ on:
         required: false
         type: boolean
       appVersion:
-        description: "If you want your app version to differ in your repository, you can specify that version here. This"
+        description: "If you want your app version to differ in your repository, you can specify that version here."
         required: false
         type: string
 
@@ -41,3 +37,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Create release
+        uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 # v2.3.2
+        with:
+          tag_name: "${{github.event.inputs.appID}}"
+        
+      - name: Wait for necessary files
+        run: |
+          echo 'A release tag has been created: https://github.com/${{github.repository}}/releases/tag/${{github.event.inputs.appID}}'
+          if [[ "${{github.event.inputs.appTweaks}}" == "true" ]]; then
+            echo 'Please upload the file `tweaks.zip` containing the folder of tweaks you want to install with your app, as found in "On My [iPhone/iPad] > LiveContainer > Tweaks".'
+            echo 'Please also make sure that your app is already setup with the correct tweak folder.'
+            success="false"
+            while [ "$success" = "false" ]; do
+              curl -fsL https://github.com/${{github.repository}}/releases/download/${{github.event.inputs.appID}}/tweaks.zip -w "%{http_code}\n" && success="true" || sleep 5
+            done
+          fi
+          if [[ "${{github.event.inputs.appData}}" == "true" ]]; then
+            echo 'Please upload the file `data.zip` containing the Documents and Library folders of extra data you want to install with your app, as found in "On My [iPhone/iPad] > LiveContainer > Data > Application > {container UUID}".'
+            echo 'Please also make sure that this container UUID matches the container in your app settings.'
+            success="false"
+            while [ "$success" = "false" ]; do
+              curl -fsL https://github.com/${{github.repository}}/releases/download/${{github.event.inputs.appID}}/data.zip -w "%{http_code}\n" && success="true" || sleep 5
+            done
+          fi
+          echo 'Please upload the file `app.zip` containing your .app file, as found in "On My [iPhone/iPad] > LiveContainer > Applications".'
+          success="false"
+          while [ "$success" = "false" ]; do
+            curl -fsL https://github.com/${{github.repository}}/releases/download/${{github.event.inputs.appID}}/app.zip -w "%{http_code}\n" && success="true" || sleep 5
+          done
